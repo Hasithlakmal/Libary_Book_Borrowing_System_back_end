@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: //  add your database link and  name to  create database
+    url: //  add your database link and  name to create database
     username: // add your mysql username
     password: // add your mysql password
