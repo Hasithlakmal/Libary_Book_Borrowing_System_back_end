@@ -9,7 +9,7 @@ public class BookControler {
     @GetMapping
     public String getBook() {
 
-        return "modulduwa";
+         return "modulduwa";
 
     }
 }
