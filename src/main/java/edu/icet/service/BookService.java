@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -124,6 +125,38 @@ public class BookService {
                 book.getAvailableCopies()
 
         ));
+
+    }
+
+    public Book serchById(String id) {
+
+        Optional<BookEntity> byId = bookRepository.findById(Long.valueOf(id));
+
+        BookEntity bookEntity = byId.orElseThrow();  // or -----   byId.get();
+
+        return new Book(
+
+                bookEntity.getId(),
+                bookEntity.getTitle(),
+                bookEntity.getAuthor(),
+                bookEntity.getPublisher(),
+                bookEntity.getIsbn(),
+                bookEntity.getCategory(),
+                bookEntity.getAvailableCopies()
+
+
+
+
+
+        );
+
+
+
+    }
+
+    public void deletbyUrlId(String id) {
+
+        bookRepository.deleteById(Long.valueOf(id));
 
     }
 }

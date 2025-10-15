@@ -15,13 +15,13 @@ public class BookControler {
     BookService bookService;
 
     @GetMapping
-    public String viwe(){
+    public String viwe() {
 
         return "madolduwa";
     }
 
     @PostMapping
-    public void addBook(@RequestBody Book book) {
+    public String addBook(@RequestBody Book book) {
 
 
         System.out.println(book);
@@ -29,13 +29,14 @@ public class BookControler {
         bookService.add(book);
 
 
-       // return "modulduwa"+bookService.getAll();
+        // return "modulduwa"+bookService.getAll();
 
+        return "ok add";
 
     }
 
     @GetMapping("/{author}")
-    public String getAutor(@PathVariable String author){
+    public String getAutor(@PathVariable String author) {
 
         System.out.println(author);
 
@@ -43,7 +44,7 @@ public class BookControler {
     }
 
     @GetMapping("/author")
-    public String getAutor1(@PathVariable String author){
+    public String getAutor1(@PathVariable String author) {
 
         System.out.println(author);
 
@@ -51,17 +52,17 @@ public class BookControler {
     }
 
     @GetMapping("/all")
-    public List<Book> getallDetails(){
+    public List<Book> getallDetails() {
 
-       List<Book> books=bookService.getAll();
+        List<Book> books = bookService.getAll();
 
         System.out.println(books);
         return books;
 
     }
 
-    @PostMapping("/delo")
-    public void  delteBook(@RequestBody Book book){
+    @DeleteMapping("/delo")
+    public String delteBook(@RequestBody Book book) {
 
         bookService.delete(book);
 
@@ -76,24 +77,71 @@ public class BookControler {
 //                "availableCopies": 12
 //        }
 
+        return "delet sucsses full ok !!!";
 
     }
 
 
-@PostMapping("/delId")
-    public void  deletebyId(@RequestBody Long_Id id){
+    @DeleteMapping("/delId")
+    public String deletebyId(@RequestBody Long_Id id) {
 
         bookService.deleteById(id);
 
 
+        return "delet sucsses full ok !!!";
+
     }
 
-    @PostMapping("/update")
-    public void Update(@RequestBody Book book){
+
+    @DeleteMapping("delUrlId/{id}")
+
+    public String deletbyUrlId(@PathVariable String id){
+
+        bookService.deletbyUrlId(id);
+
+        return "delet sucsses full ok !!!";
+
+    }
+
+
+    @PutMapping("/update")
+    public String Update(@RequestBody Book book) {
 
         bookService.update(book);
 
+        return "update sucsses full ok !!!";
+
     }
+
+    @GetMapping("/serchId")
+    public Book serchById(@RequestBody Long_Id id) {
+
+        return bookService.serchById(String.valueOf(id));
+
+
+    }
+
+    @GetMapping("serchId/{id}")
+    public Book serchByID( @PathVariable String id) {
+
+        return bookService.serchById(id);
+
+
+    }
+
+
+    @GetMapping("/details")
+    public String ApiDetails() {
+
+        return " Postmapping for add book \n" +
+                "getmaping for viwe all detais \n" +
+                " /delId for  by id delte \n" +
+                "/delob for by object delete \n" +
+                "/details  for about api";
+
+
+    }
+
 
 }
  
