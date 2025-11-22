@@ -23,16 +23,19 @@ public class UserService {
     public void  add(User user){
 
 
-        userRepository.save(new UserEntity(
+//        userRepository.save(new UserEntity(
+//
+//                user.getUserId(),
+//                user.getName(),
+//                user.getEmail(),
+//                user.getPhoine(),
+//                user.getAdddress(),
+//                user.getMembershipDate()
+//
+//        ));
 
-                user.getUserId(),
-                user.getName(),
-                user.getEmail(),
-                user.getPhoine(),
-                user.getAdddress(),
-                user.getMembershipDate()
 
-        ));
+        userRepository.save(mapper.map(user,UserEntity.class));  //  //   model mapper use for instead  dto  conver to entitiy  and  entity convert to dto
 
     }
 
@@ -81,7 +84,7 @@ public class UserService {
 //          );
 
 
-            users.add(mapper.map(userEntity,User.class));   //
+            users.add(mapper.map(userEntity,User.class));   //   model mapper use for instead  dto  conver to entitiy  and  entity convert to dto
 
         }
 
