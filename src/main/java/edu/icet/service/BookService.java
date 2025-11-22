@@ -19,6 +19,7 @@ public class BookService {
 
     BookRepository bookRepository;
 
+
     public void  add(Book book){
 
         // public void  add(BookEntity bookEntity){
@@ -145,11 +146,7 @@ public class BookService {
                 bookEntity.getAvailableCopies()
 
 
-
-
-
         );
-
 
 
     }
